@@ -8,9 +8,12 @@ namespace DoctorAppointmentScheduler.Services.Services
     {
         private readonly IAppointmentRepository _appointmentRepository;
 
-        public AppointmentService(IAppointmentRepository appointmentRepository)
+        private readonly ISlotService _slotService;
+
+        public AppointmentService(IAppointmentRepository appointmentRepository, ISlotService slotService)
         {
             _appointmentRepository = appointmentRepository;
+            _slotService = slotService;
         }
 
         public async Task<Appointment> GetAppointmentByIdAsync(int id)
@@ -32,9 +35,16 @@ namespace DoctorAppointmentScheduler.Services.Services
             return await _appointmentRepository.GetAllAsync();
         }
 
-        public async Task CreateAppointmentAsync(Appointment appointment)
+        public async Task<bool> CreateAppointmentAsync(Appointment appointment)
         {
-            await _appointmentRepository.AddAsync(appointment);
+            IEnumerable<Slot> slots = await _slotService.GetSlot(appointment.AppointmentDate, appointment.DoctorId);
+            bool isSlotAvailable = slots.Any(s => s.StartTime == appointment.AppointmentTime && s.Status == "Available");
+            if (isSlotAvailable)
+            {
+                await _appointmentRepository.AddAsync(appointment);
+                return true;
+            }
+            return false;
         }
 
         public async Task UpdateAppointmentAsync(Appointment appointment)
