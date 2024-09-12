@@ -28,21 +28,23 @@ namespace DoctorAppointmentScheduler
 
             //// Register your repositories
             builder.Services.AddScoped<IAppointmentRepository, AppointmentRepository>();
-            //builder.Services.AddScoped<IDoctorRepository, DoctorRepository>();
-            //builder.Services.AddScoped<IPatientRepository, PatientRepository>();
+            builder.Services.AddScoped<IPatientRepository, PatientRepository>();
             //builder.Services.AddScoped<ISlotRepository, SlotRepository>();
             builder.Services.AddScoped<IHolidaysRepository, HolidaysRepository>();
             builder.Services.AddScoped<IDoctorRepository, DoctorRepository>();
-            builder.Services.AddScoped<ILeaveReopsitory, ILeaveReopsitory>();
+            builder.Services.AddScoped<ILeaveRepository, LeaveRepository>();
+            builder.Services.AddScoped<ITimeAvailabilityRepository, TimeAvailabilityRepository>();
+
 
             //// Register your services
             builder.Services.AddScoped<IAppointmentService, AppointmentService>();
-            //builder.Services.AddScoped<IDoctorService, DoctorService>();
-            //builder.Services.AddScoped<IPatientService, PatientService>();
+            builder.Services.AddScoped<IPatientService, PatientService>();
             //builder.Services.AddScoped<ISlotService, SlotService>();
             builder.Services.AddScoped<IHolidaysService, HolidaysService>();
             builder.Services.AddScoped<IDoctorService, DoctorService>();
             builder.Services.AddScoped<ILeaveService, LeaveService>();
+            builder.Services.AddScoped<ITimeAvailabilityService, TimeAvailabilityService>();
+            builder.Services.AddScoped<ISlotService, SlotService>();
 
             //// Register AutoMapper if used
             //builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());

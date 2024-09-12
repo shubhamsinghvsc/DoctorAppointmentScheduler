@@ -5,11 +5,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DoctorAppointmentScheduler.DataAccess.Repositories.Repositories
 {
-    public class TimeAvailabiltityRepository : ITimeAvailabilityRepository
+    public class TimeAvailabilityRepository : ITimeAvailabilityRepository
     {
         private readonly AppDbContext _context;
 
-        public TimeAvailabiltityRepository(AppDbContext context)
+        public TimeAvailabilityRepository(AppDbContext context)
         {
             _context = context;
         }

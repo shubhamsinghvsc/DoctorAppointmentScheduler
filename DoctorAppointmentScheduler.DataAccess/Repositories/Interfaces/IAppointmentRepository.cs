@@ -9,5 +9,6 @@ namespace DoctorAppointmentScheduler.DataAccess.Repositories.Interfaces
         Task AddAsync(Appointment appointment);
         Task UpdateAsync(Appointment appointment);
         Task DeleteAsync(int id);
+
     }
 }

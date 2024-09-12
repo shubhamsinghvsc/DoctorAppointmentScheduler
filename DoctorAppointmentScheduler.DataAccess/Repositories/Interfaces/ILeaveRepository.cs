@@ -2,7 +2,7 @@
 
 namespace DoctorAppointmentScheduler.DataAccess.Repositories.Interfaces
 {
-    internal interface ILeaveRepository
+    public interface ILeaveRepository
     {
         Task<IEnumerable<Leave>> GetAll();
     }

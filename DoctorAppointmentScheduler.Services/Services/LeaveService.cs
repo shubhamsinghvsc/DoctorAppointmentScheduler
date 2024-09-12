@@ -1,4 +1,4 @@
-﻿using DoctorAppointmentScheduler.DataAccess.Repositories.Repositories;
+﻿using DoctorAppointmentScheduler.DataAccess.Repositories.Interfaces;
 using DoctorAppointmentScheduler.Models.Models.Entities;
 using DoctorAppointmentScheduler.Services.Interfaces;
 
@@ -6,9 +6,9 @@ namespace DoctorAppointmentScheduler.Services.Services
 {
     public class LeaveService : ILeaveService
     {
-        private readonly ILeaveReopsitory _leaveReopsitory;
+        private readonly ILeaveRepository _leaveReopsitory;
 
-        public LeaveService(ILeaveReopsitory leaveReopsitory)
+        public LeaveService(ILeaveRepository leaveReopsitory)
         {
             _leaveReopsitory = leaveReopsitory;
         }

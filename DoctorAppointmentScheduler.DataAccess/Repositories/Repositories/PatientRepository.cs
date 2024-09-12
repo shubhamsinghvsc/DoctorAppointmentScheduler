@@ -5,23 +5,24 @@ using Microsoft.EntityFrameworkCore;
 
 namespace DoctorAppointmentScheduler.DataAccess.Repositories.Repositories
 {
-    public class DoctorRepository : IDoctorRepository
+    public class PatientRepository : IPatientRepository
     {
         private readonly AppDbContext _context;
 
-        public DoctorRepository(AppDbContext context)
+        public PatientRepository(AppDbContext context)
         {
             _context = context;
         }
 
-        public async Task<IEnumerable<Doctor>> GetAll()
+        public async Task<IEnumerable<Patient>> GetAll()
         {
-            return await _context.Doctors.ToListAsync();
+            return await _context.Patients.ToListAsync();
         }
 
-        public async Task<Doctor> GetById(int id)
+        public async Task<IEnumerable<Patient>> GetAllByContactNumber(string ContactNumber)
         {
-            return await _context.Doctors.FindAsync(id);
+            return await _context.Patients.Where(p => p.ContactNumber == ContactNumber).ToListAsync();
         }
+
     }
 }

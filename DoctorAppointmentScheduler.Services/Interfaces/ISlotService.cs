@@ -2,9 +2,8 @@
 
 namespace DoctorAppointmentScheduler.Services.Interfaces
 {
-    public interface IDoctorService
+    public interface ISlotService
     {
-        Task<IEnumerable<Doctor>> GetAllDoctor();
-        Task<Doctor> GetDoctorById(int id);
+        Task<IEnumerable<Slot>> GetSlot(DateTime appointmentDate, int doctorId);
     }
 }

@@ -17,5 +17,10 @@ namespace DoctorAppointmentScheduler.Services.Services
         {
             return await _repository.GetAll();
         }
+
+        public async Task<Doctor> GetDoctorById(int id)
+        {
+            return await _repository.GetById(id);
+        }
     }
 }
