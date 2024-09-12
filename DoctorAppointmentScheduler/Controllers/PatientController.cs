@@ -1,4 +1,5 @@
-﻿using DoctorAppointmentScheduler.Services.Interfaces;
+﻿using DoctorAppointmentScheduler.Models.Models.Entities;
+using DoctorAppointmentScheduler.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.IdentityModel.Tokens;
 
@@ -42,6 +43,23 @@ namespace DoctorAppointmentScheduler.Controllers
 
 
             return Ok(response);
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreatePatient(Patient patient)
+        {
+            if (patient == null)
+            {
+                return BadRequest("Patient is Null");
+            }
+
+            var patientExist = await _patientService.GetPatientByContactNumber(patient.ContactNumber);
+            if (patientExist.Any(p => p.Name == patient.Name))
+            {
+                return BadRequest("Patient is Already Registered with this Name and Number.");
+            }
+            await _patientService.CreateNewPatient(patient);
+            return CreatedAtAction(nameof(GetPatientByContactNumber), new { ContactNumber = patient.ContactNumber }, patient);
         }
     }
 }

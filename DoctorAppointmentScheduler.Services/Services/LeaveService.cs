@@ -17,5 +17,9 @@ namespace DoctorAppointmentScheduler.Services.Services
         {
             return await _leaveReopsitory.GetAll();
         }
+        public async Task<IEnumerable<Leave>> GetLeaveByDoctorId(int id)
+        {
+            return await _leaveReopsitory.GetByDoctorId(id);
+        }
     }
 }

@@ -19,6 +19,16 @@ namespace DoctorAppointmentScheduler.DataAccess.Repositories.Repositories
             return await _context.Appointments.FindAsync(id);
         }
 
+        public async Task<IEnumerable<Appointment>> GetByDoctorIdAsync(int id)
+        {
+            return await _context.Appointments.Where(a => a.DoctorId == id).ToListAsync();
+        }
+
+        public async Task<IEnumerable<Appointment>> GetByPatientIdAsync(int id)
+        {
+            return await _context.Appointments.Where(a => a.PatientId == id).ToListAsync();
+        }
+
         public async Task<IEnumerable<Appointment>> GetAllAsync()
         {
             return await _context.Appointments.ToListAsync();

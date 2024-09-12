@@ -19,5 +19,11 @@ namespace DoctorAppointmentScheduler.Controllers
         {
             return Ok(await _leaveService.GetAllLeave());
         }
+
+        [HttpGet("GetByDoctorId")]
+        public async Task<IActionResult> GetByDoctorId(int id)
+        {
+            return Ok(await _leaveService.GetLeaveByDoctorId(id));
+        }
     }
 }

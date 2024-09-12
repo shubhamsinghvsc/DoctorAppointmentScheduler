@@ -29,7 +29,6 @@ namespace DoctorAppointmentScheduler
             //// Register your repositories
             builder.Services.AddScoped<IAppointmentRepository, AppointmentRepository>();
             builder.Services.AddScoped<IPatientRepository, PatientRepository>();
-            //builder.Services.AddScoped<ISlotRepository, SlotRepository>();
             builder.Services.AddScoped<IHolidaysRepository, HolidaysRepository>();
             builder.Services.AddScoped<IDoctorRepository, DoctorRepository>();
             builder.Services.AddScoped<ILeaveRepository, LeaveRepository>();
@@ -39,7 +38,6 @@ namespace DoctorAppointmentScheduler
             //// Register your services
             builder.Services.AddScoped<IAppointmentService, AppointmentService>();
             builder.Services.AddScoped<IPatientService, PatientService>();
-            //builder.Services.AddScoped<ISlotService, SlotService>();
             builder.Services.AddScoped<IHolidaysService, HolidaysService>();
             builder.Services.AddScoped<IDoctorService, DoctorService>();
             builder.Services.AddScoped<ILeaveService, LeaveService>();

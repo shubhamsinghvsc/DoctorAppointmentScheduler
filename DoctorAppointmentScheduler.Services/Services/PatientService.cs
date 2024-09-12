@@ -20,7 +20,17 @@ namespace DoctorAppointmentScheduler.Services.Services
 
         public async Task<IEnumerable<Patient>> GetPatientByContactNumber(string contactNumber)
         {
-            return await _patientRepository.GetAllByContactNumber(contactNumber);
+            var patient = await _patientRepository.GetAllByContactNumber(contactNumber);
+            if (patient == null || !patient.Any())
+            {
+
+            }
+            return patient;
+        }
+
+        public async Task CreateNewPatient(Patient patient)
+        {
+            await _patientRepository.AddAsync(patient);
         }
     }
 }

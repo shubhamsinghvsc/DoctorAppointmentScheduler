@@ -18,6 +18,15 @@ namespace DoctorAppointmentScheduler.Services.Services
             return await _appointmentRepository.GetByIdAsync(id);
         }
 
+        public async Task<IEnumerable<Appointment>> GetAppointmentByDoctorIdAsync(int id)
+        {
+            return await _appointmentRepository.GetByDoctorIdAsync(id);
+        }
+        public async Task<IEnumerable<Appointment>> GetAppointmentByPatientIdAsync(int id)
+        {
+            return await _appointmentRepository.GetByPatientIdAsync(id);
+        }
+
         public async Task<IEnumerable<Appointment>> GetAllAppointmentsAsync()
         {
             return await _appointmentRepository.GetAllAsync();

@@ -24,5 +24,11 @@ namespace DoctorAppointmentScheduler.DataAccess.Repositories.Repositories
             return await _context.Patients.Where(p => p.ContactNumber == ContactNumber).ToListAsync();
         }
 
+        public async Task AddAsync(Patient patient)
+        {
+            _context.Patients.AddAsync(patient);
+            await _context.SaveChangesAsync();
+        }
+
     }
 }

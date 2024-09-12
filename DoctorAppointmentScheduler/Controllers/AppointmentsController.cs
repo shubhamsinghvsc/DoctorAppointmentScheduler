@@ -15,7 +15,7 @@ namespace DoctorAppointmentScheduler.Controllers
             _appointmentService = appointmentService;
         }
 
-        [HttpGet("{id}")]
+        [HttpGet("GetById{id}")]
         public async Task<IActionResult> GetById(int id)
         {
             var appointment = await _appointmentService.GetAppointmentByIdAsync(id);
@@ -33,6 +33,29 @@ namespace DoctorAppointmentScheduler.Controllers
             return Ok(appointments);
         }
 
+        [HttpGet("GetDoctorAppointmentHistory")]
+        public async Task<IActionResult> GetDoctorAppointmentHistory(int doctorId)
+        {
+            var appointment = await _appointmentService.GetAppointmentByDoctorIdAsync(doctorId);
+            if (appointment == null)
+            {
+                return NotFound();
+            }
+            return Ok(appointment);
+        }
+
+        [HttpGet("GetPatientAppointmentHistory")]
+        public async Task<IActionResult> GetPatientAppointmentHistory(int patientId)
+        {
+            var appointment = await _appointmentService.GetAppointmentByPatientIdAsync(patientId);
+            if (appointment == null)
+            {
+                return NotFound();
+            }
+            return Ok(appointment);
+        }
+
+
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] Appointment appointment)
         {
@@ -43,6 +66,15 @@ namespace DoctorAppointmentScheduler.Controllers
             await _appointmentService.CreateAppointmentAsync(appointment);
             return CreatedAtAction(nameof(GetById), new { id = appointment.AppointmentId }, appointment);
         }
+
+
+
+
+
+
+
+
+
 
         [HttpPut]
         public async Task<IActionResult> Update([FromBody] Appointment appointment)

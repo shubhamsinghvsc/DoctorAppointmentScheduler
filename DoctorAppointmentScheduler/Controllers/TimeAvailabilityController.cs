@@ -19,5 +19,11 @@ namespace DoctorAppointmentScheduler.Controllers
         {
             return Ok(await _timeAvailabilityService.GetAllTimeAvailability());
         }
+
+        [HttpGet("GetByDoctorId")]
+        public async Task<IActionResult> GetByDoctorId(int DoctorId)
+        {
+            return Ok(await _timeAvailabilityService.GetTimeAvailabilityByDoctorId(DoctorId));
+        }
     }
 }

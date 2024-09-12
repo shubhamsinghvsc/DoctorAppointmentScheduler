@@ -6,5 +6,6 @@ namespace DoctorAppointmentScheduler.Services.Interfaces
     {
         Task<IEnumerable<Patient>> GetAllPatient();
         Task<IEnumerable<Patient>> GetPatientByContactNumber(string contactNumber);
+        Task CreateNewPatient(Patient patient);
     }
 }
