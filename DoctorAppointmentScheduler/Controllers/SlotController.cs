@@ -1,4 +1,5 @@
-﻿using DoctorAppointmentScheduler.Services.Interfaces;
+﻿using DoctorAppointmentScheduler.Models.Models.Entities;
+using DoctorAppointmentScheduler.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DoctorAppointmentScheduler.Controllers
@@ -17,7 +18,16 @@ namespace DoctorAppointmentScheduler.Controllers
         [HttpGet]
         public async Task<IActionResult> GetSlots(DateTime appointmentDate, int doctorId)
         {
-            return Ok(await _slotService.GetSlot(appointmentDate, doctorId));
+            IEnumerable<Slot> slot = await _slotService.GetSlot(appointmentDate, doctorId);
+            if (slot.Count() == 1)
+            {
+                var errorObj = new
+                {
+                    status = slot.First().Status,
+                };
+                return BadRequest(errorObj);
+            }
+            return Ok(slot);
         }
     }
 }
