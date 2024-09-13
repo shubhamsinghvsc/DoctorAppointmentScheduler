@@ -37,11 +37,13 @@ namespace DoctorAppointmentScheduler.Services.Services
         {
             IEnumerable<Appointment> existingAppointment = await _appointmentRepository.GetAllAsync();
             bool isSlotAvailable = existingAppointment.Any(a => a.DoctorId == appointment.DoctorId && a.AppointmentDate == appointment.AppointmentDate && a.AppointmentTime == appointment.AppointmentTime);
-            if (isSlotAvailable)
+            if (!isSlotAvailable)
             {
                 await _appointmentRepository.AddAsync(appointment);
+                Console.WriteLine("helllooooo");
                 return true;
             }
+            Console.WriteLine("worrrrkdddddd");
             return false;
         }
 

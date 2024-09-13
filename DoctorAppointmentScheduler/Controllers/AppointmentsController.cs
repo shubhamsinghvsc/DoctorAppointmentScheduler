@@ -59,11 +59,15 @@ namespace DoctorAppointmentScheduler.Controllers
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] Appointment appointment)
         {
+            bool isAppointmentBooked = await _appointmentService.CreateAppointmentAsync(appointment);
             if (appointment == null)
             {
                 return BadRequest();
             }
-            await _appointmentService.CreateAppointmentAsync(appointment);
+            if (!isAppointmentBooked)
+            {
+                return BadRequest("Slot is Already Booked");
+            }
             return CreatedAtAction(nameof(GetById), new { id = appointment.AppointmentId }, appointment);
         }
 
