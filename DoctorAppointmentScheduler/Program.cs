@@ -56,6 +56,17 @@ namespace DoctorAppointmentScheduler
                 dbContext.Database.EnsureCreated();
             }
 
+            builder.Services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAll",
+                    builder =>
+                    {
+                        builder.AllowAnyOrigin()   // Allow any origin
+                               .AllowAnyMethod()   // Allow any HTTP method (GET, POST, etc.)
+                               .AllowAnyHeader();  // Allow any HTTP header
+                    });
+            });
+
             // Configure the HTTP request pipeline
             if (app.Environment.IsDevelopment())
             {
@@ -68,7 +79,7 @@ namespace DoctorAppointmentScheduler
                 app.UseExceptionHandler("/Home/Error");
                 app.UseHsts();
             }
-
+            app.UseCors("AllowAll");
             app.UseHttpsRedirection();
             app.UseStaticFiles();
             app.UseRouting();
