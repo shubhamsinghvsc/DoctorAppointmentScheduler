@@ -46,16 +46,6 @@ namespace DoctorAppointmentScheduler
 
             //// Register AutoMapper if used
             //builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
-
-            var app = builder.Build();
-
-
-            using (var scope = app.Services.CreateScope())
-            {
-                var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
-                dbContext.Database.EnsureCreated();
-            }
-
             builder.Services.AddCors(options =>
             {
                 options.AddPolicy("AllowAll",
@@ -66,6 +56,16 @@ namespace DoctorAppointmentScheduler
                                .AllowAnyHeader();  // Allow any HTTP header
                     });
             });
+
+            var app = builder.Build();
+
+
+            using (var scope = app.Services.CreateScope())
+            {
+                var dbContext = scope.ServiceProvider.GetRequiredService<AppDbContext>();
+                dbContext.Database.EnsureCreated();
+            }
+
 
             // Configure the HTTP request pipeline
             if (app.Environment.IsDevelopment())
