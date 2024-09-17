@@ -1,4 +1,5 @@
 ﻿using DoctorAppointmentScheduler.Models.Models.Enums;
+using System.Text.Json.Serialization;
 
 namespace DoctorAppointmentScheduler.Models.Models.Entities
 {
@@ -14,6 +15,7 @@ namespace DoctorAppointmentScheduler.Models.Models.Entities
         public string Description { get; set; }
 
         // Navigation Property
+        [JsonIgnore]
         public Doctor? Doctor { get; set; }
     }
 }

@@ -7,7 +7,7 @@ namespace DoctorAppointmentScheduler.Models.Models.Entities
         public int PatientId { get; set; }
         public string Name { get; set; }
         public DateTime DateOfBirth { get; set; }
-        public GederSelector Gender { get; set; }
+        public GenderSelector Gender { get; set; }
         public string ContactNumber { get; set; }
         public string Email { get; set; }
     }

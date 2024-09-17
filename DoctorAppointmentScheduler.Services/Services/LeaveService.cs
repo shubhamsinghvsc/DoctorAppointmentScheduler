@@ -21,5 +21,10 @@ namespace DoctorAppointmentScheduler.Services.Services
         {
             return await _leaveReopsitory.GetByDoctorId(id);
         }
+
+        public async Task CreateLeave(Leave leave)
+        {
+            await _leaveReopsitory.AddAsync(leave);
+        }
     }
 }

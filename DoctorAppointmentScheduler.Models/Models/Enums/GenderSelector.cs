@@ -1,6 +1,6 @@
 ﻿namespace DoctorAppointmentScheduler.Models.Models.Enums
 {
-    public enum GederSelector
+    public enum GenderSelector
     {
         Male,
         Female,

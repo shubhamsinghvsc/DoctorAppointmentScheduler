@@ -22,5 +22,11 @@ namespace DoctorAppointmentScheduler.DataAccess.Repositories.Repositories
         {
             return await _context.Leaves.Where(l => l.DoctorId == id).ToListAsync();
         }
+
+        public async Task AddAsync(Leave leave)
+        {
+            _context.Add(leave);
+            await _context.SaveChangesAsync();
+        }
     }
 }

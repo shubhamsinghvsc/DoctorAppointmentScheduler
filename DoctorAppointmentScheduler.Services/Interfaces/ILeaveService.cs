@@ -6,5 +6,7 @@ namespace DoctorAppointmentScheduler.Services.Interfaces
     {
         Task<IEnumerable<Leave>> GetAllLeave();
         Task<IEnumerable<Leave>> GetLeaveByDoctorId(int id);
+
+        Task CreateLeave(Leave leave);
     }
 }

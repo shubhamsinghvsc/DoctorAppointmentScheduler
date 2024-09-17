@@ -1,4 +1,5 @@
-﻿using DoctorAppointmentScheduler.Services.Interfaces;
+﻿using DoctorAppointmentScheduler.Models.Models.Entities;
+using DoctorAppointmentScheduler.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DoctorAppointmentScheduler.Controllers
@@ -24,6 +25,18 @@ namespace DoctorAppointmentScheduler.Controllers
         public async Task<IActionResult> GetByDoctorId(int id)
         {
             return Ok(await _leaveService.GetLeaveByDoctorId(id));
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> AddLeave(Leave leave)
+        {
+            if (leave == null)
+            {
+                return BadRequest("Leave can not be NULL.");
+            }
+            await _leaveService.CreateLeave(leave);
+            return CreatedAtAction(nameof(GetByDoctorId), new { id = leave.LeaveId }, leave);
+
         }
     }
 }

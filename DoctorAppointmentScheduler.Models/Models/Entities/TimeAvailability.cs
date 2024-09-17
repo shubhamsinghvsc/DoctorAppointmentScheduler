@@ -1,4 +1,6 @@
-﻿namespace DoctorAppointmentScheduler.Models.Models.Entities
+﻿using System.Text.Json.Serialization;
+
+namespace DoctorAppointmentScheduler.Models.Models.Entities
 {
     public class TimeAvailability
     {
@@ -9,6 +11,7 @@
         public TimeSpan EndTime { get; set; }
 
         // Navigation Property
+        [JsonIgnore]
         public Doctor? Doctor { get; set; }
     }
 }

@@ -29,5 +29,6 @@ namespace DoctorAppointmentScheduler.Controllers
             })
             .ToArray();
         }
+
     }
 }

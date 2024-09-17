@@ -21,5 +21,10 @@ namespace DoctorAppointmentScheduler.Services.Services
         {
             return await _timeAvailability.GetByDoctorId(id);
         }
+
+        public async Task CreateTimeAvailability(TimeAvailability timeAvailability)
+        {
+            await _timeAvailability.CreateTimeAvailability(timeAvailability);
+        }
     }
 }

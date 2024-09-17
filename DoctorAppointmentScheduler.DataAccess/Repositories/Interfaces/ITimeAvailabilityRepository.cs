@@ -6,5 +6,6 @@ namespace DoctorAppointmentScheduler.DataAccess.Repositories.Interfaces
     {
         Task<IEnumerable<TimeAvailability>> GetAll();
         Task<IEnumerable<TimeAvailability>> GetByDoctorId(int id);
+        Task CreateTimeAvailability(TimeAvailability timeAvailability);
     }
 }
