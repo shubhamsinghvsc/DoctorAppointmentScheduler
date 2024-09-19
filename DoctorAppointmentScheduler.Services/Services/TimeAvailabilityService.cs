@@ -24,7 +24,7 @@ namespace DoctorAppointmentScheduler.Services.Services
 
         public async Task CreateTimeAvailability(TimeAvailability timeAvailability)
         {
-            await _timeAvailability.CreateTimeAvailability(timeAvailability);
+            await _timeAvailability.AddAsync(timeAvailability);
         }
     }
 }

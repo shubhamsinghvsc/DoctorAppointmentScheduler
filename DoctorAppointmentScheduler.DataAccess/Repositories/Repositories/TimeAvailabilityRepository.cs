@@ -23,10 +23,26 @@ namespace DoctorAppointmentScheduler.DataAccess.Repositories.Repositories
             return await _context.TimeAvailabilities.Where(t => t.DoctorId == id).ToListAsync();
         }
 
-        public async Task CreateTimeAvailability(TimeAvailability timeAvailability)
+        public async Task AddAsync(TimeAvailability timeAvailability)
         {
             _context.Add(timeAvailability);
             await _context.SaveChangesAsync();
+        }
+
+        public async Task UpdateAsync(TimeAvailability timeAvailability)
+        {
+            _context.TimeAvailabilities.Update(timeAvailability);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task DeleteAsync(int id)
+        {
+            var timeAvailability = await _context.TimeAvailabilities.FindAsync(id);
+            if (timeAvailability != null)
+            {
+                _context.TimeAvailabilities.Remove(timeAvailability);
+                await _context.SaveChangesAsync();
+            }
         }
 
     }

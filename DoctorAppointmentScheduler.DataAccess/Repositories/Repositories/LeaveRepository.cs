@@ -28,5 +28,21 @@ namespace DoctorAppointmentScheduler.DataAccess.Repositories.Repositories
             _context.Add(leave);
             await _context.SaveChangesAsync();
         }
+
+        public async Task UpdateAsync(Leave leave)
+        {
+            _context.Leaves.Update(leave);
+            await _context.SaveChangesAsync();
+        }
+
+        public async Task DeleteAsync(int id)
+        {
+            var leave = await _context.Leaves.FindAsync(id);
+            if (leave != null)
+            {
+                _context.Leaves.Remove(leave);
+                await _context.SaveChangesAsync();
+            }
+        }
     }
 }

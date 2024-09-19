@@ -7,6 +7,7 @@ namespace DoctorAppointmentScheduler.DataAccess.Repositories.Interfaces
         Task<IEnumerable<Patient>> GetAll();
         Task<IEnumerable<Patient>> GetAllByContactNumber(string contactNumber);
         Task AddAsync(Patient patient);
-
+        Task UpdateAsync(Patient patient);
+        Task DeleteAsync(int id);
     }
 }
