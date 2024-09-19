@@ -21,17 +21,17 @@ namespace DoctorAppointmentScheduler.DataAccess.Repositories.Repositories
 
         public async Task<IEnumerable<Appointment>> GetByDoctorIdAsync(int id)
         {
-            return await _context.Appointments.Where(a => a.DoctorId == id).ToListAsync();
+            return await _context.Appointments.Include(a => a.Patient).Where(a => a.DoctorId == id).ToListAsync();
         }
-
+        // ---^
         public async Task<IEnumerable<Appointment>> GetByPatientIdAsync(int id)
         {
-            return await _context.Appointments.Where(a => a.PatientId == id).ToListAsync();
+            return await _context.Appointments.Include(a => a.Doctor).Where(a => a.PatientId == id).ToListAsync();
         }
 
-        public async Task<IEnumerable<Appointment>> GetAllAsync()
+        public async Task<List<Appointment>> GetAllAsync()
         {
-            return await _context.Appointments.ToListAsync();
+            return await _context.Appointments.Include(a => a.Patient).ToListAsync();
         }
 
         public async Task AddAsync(Appointment appointment)

@@ -19,13 +19,32 @@ namespace DoctorAppointmentScheduler.Services.Services
             return await _appointmentRepository.GetByIdAsync(id);
         }
 
-        public async Task<IEnumerable<Appointment>> GetAppointmentByDoctorIdAsync(int id)
+        public async Task<List<object>> GetAppointmentByDoctorIdAsync(int id)
         {
-            return await _appointmentRepository.GetByDoctorIdAsync(id);
+            var appointments = await _appointmentRepository.GetByDoctorIdAsync(id);
+            return appointments.Select(a => new
+            {
+                AppointmentId = a.AppointmentId,
+                DoctorId = a.DoctorId,
+                PatientName = a.Patient.Name,
+                AppointmentDate = a.AppointmentDate,
+                AppointmentTime = a.AppointmentTime, //.ToString(@"hh\:mm\:ss"),
+                Status = (int)a.Status
+            }).ToList<object>();
         }
-        public async Task<IEnumerable<Appointment>> GetAppointmentByPatientIdAsync(int id)
+
+        public async Task<List<object>> GetAppointmentByPatientIdAsync(int id)
         {
-            return await _appointmentRepository.GetByPatientIdAsync(id);
+            var appointments = await _appointmentRepository.GetByPatientIdAsync(id);
+            return appointments.Select(a => new
+            {
+                AppointmentId = a.AppointmentId,
+                DoctorId = a.DoctorId,
+                DoctorName = a.Doctor.Name,
+                AppointmentDate = a.AppointmentDate,
+                AppointmentTime = a.AppointmentTime, //.ToString(@"hh\:mm\:ss"),
+                Status = (int)a.Status
+            }).ToList<object>();
         }
 
         public async Task<IEnumerable<Appointment>> GetAllAppointmentsAsync()
@@ -55,6 +74,7 @@ namespace DoctorAppointmentScheduler.Services.Services
         {
             await _appointmentRepository.DeleteAsync(id);
         }
+
     }
 
 }

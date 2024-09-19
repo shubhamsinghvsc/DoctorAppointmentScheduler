@@ -9,6 +9,7 @@ namespace DoctorAppointmentScheduler.Controllers
     public class AppointmentsController : ControllerBase
     {
         private readonly IAppointmentService _appointmentService;
+        private readonly IPatientService _patientService;
 
         public AppointmentsController(IAppointmentService appointmentService)
         {
@@ -44,6 +45,8 @@ namespace DoctorAppointmentScheduler.Controllers
             return Ok(appointment);
         }
 
+
+
         [HttpGet("GetPatientAppointmentHistory")]
         public async Task<IActionResult> GetPatientAppointmentHistory(int patientId)
         {
@@ -54,7 +57,6 @@ namespace DoctorAppointmentScheduler.Controllers
             }
             return Ok(appointment);
         }
-
 
         [HttpPost]
         public async Task<IActionResult> Create([FromBody] Appointment appointment)
@@ -70,14 +72,6 @@ namespace DoctorAppointmentScheduler.Controllers
             }
             return CreatedAtAction(nameof(GetById), new { id = appointment.AppointmentId }, appointment);
         }
-
-
-
-
-
-
-
-
 
 
         [HttpPut]
@@ -97,6 +91,8 @@ namespace DoctorAppointmentScheduler.Controllers
             await _appointmentService.DeleteAppointmentAsync(id);
             return NoContent();
         }
+
+
     }
 
 }

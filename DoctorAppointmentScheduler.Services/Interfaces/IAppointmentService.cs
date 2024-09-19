@@ -6,8 +6,8 @@ namespace DoctorAppointmentScheduler.Services.Interfaces
     {
         Task<Appointment> GetAppointmentByIdAsync(int id);
         Task<IEnumerable<Appointment>> GetAllAppointmentsAsync();
-        Task<IEnumerable<Appointment>> GetAppointmentByDoctorIdAsync(int id);
-        Task<IEnumerable<Appointment>> GetAppointmentByPatientIdAsync(int id);
+        Task<List<object>> GetAppointmentByDoctorIdAsync(int id);
+        Task<List<object>> GetAppointmentByPatientIdAsync(int id);
         Task<bool> CreateAppointmentAsync(Appointment appointment);
         Task UpdateAppointmentAsync(Appointment appointment);
         Task DeleteAppointmentAsync(int id);

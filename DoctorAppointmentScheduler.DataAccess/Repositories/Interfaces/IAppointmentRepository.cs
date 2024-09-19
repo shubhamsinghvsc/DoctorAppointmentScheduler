@@ -6,7 +6,7 @@ namespace DoctorAppointmentScheduler.DataAccess.Repositories.Interfaces
     {
         Task<Appointment> GetByIdAsync(int id);
 
-        Task<IEnumerable<Appointment>> GetAllAsync();
+        Task<List<Appointment>> GetAllAsync();
         Task<IEnumerable<Appointment>> GetByDoctorIdAsync(int id);
         Task<IEnumerable<Appointment>> GetByPatientIdAsync(int id);
         Task AddAsync(Appointment appointment);
