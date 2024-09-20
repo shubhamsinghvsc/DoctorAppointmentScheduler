@@ -1,7 +1,6 @@
 ﻿using DoctorAppointmentScheduler.Models.Models.Entities;
 using DoctorAppointmentScheduler.Services.Interfaces;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.IdentityModel.Tokens;
 
 namespace DoctorAppointmentScheduler.Controllers
 {
@@ -30,7 +29,7 @@ namespace DoctorAppointmentScheduler.Controllers
             var patient = await _patientService.GetPatientByContactNumber(contactNumber);
             var doctor = await _doctorService.GetAllDoctor();
 
-            if (patient.IsNullOrEmpty())
+            if (patient == null)
             {
                 return BadRequest("Patient is not Registered");
             }

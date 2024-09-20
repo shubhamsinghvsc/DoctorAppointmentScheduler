@@ -1,9 +1,13 @@
-﻿namespace DoctorAppointmentScheduler.Models.Models.Entities
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace DoctorAppointmentScheduler.Models.Models.Entities
 {
     public class Users
     {
-        //public string ContactNumber { get; set; }
-        //public string Name { get; set; }
-        //public string 
+        [Key]
+        public string ContactNumber { get; set; }
+        public string Name { get; set; }
+        public string Email { get; set; }
+        public string password { get; set; }
     }
 }

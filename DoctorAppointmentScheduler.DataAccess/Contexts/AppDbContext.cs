@@ -13,6 +13,7 @@ namespace DoctorAppointmentScheduler.DataAccess.Contexts
         public DbSet<Leave> Leaves { get; set; }
         public DbSet<Patient> Patients { get; set; }
         public DbSet<TimeAvailability> TimeAvailabilities { get; set; }
+        public DbSet<Users> Users { get; set; }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
