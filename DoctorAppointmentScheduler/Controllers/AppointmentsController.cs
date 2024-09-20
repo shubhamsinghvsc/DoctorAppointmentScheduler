@@ -82,14 +82,14 @@ namespace DoctorAppointmentScheduler.Controllers
                 return BadRequest();
             }
             await _appointmentService.UpdateAppointmentAsync(appointment);
-            return NoContent();
+            return Ok(new { message = "Updated Successfully" });
         }
 
         [HttpDelete("{id}")]
         public async Task<IActionResult> Delete(int id)
         {
             await _appointmentService.DeleteAppointmentAsync(id);
-            return NoContent();
+            return Ok(new { message = "Deleted Successfully" });
         }
 
 
