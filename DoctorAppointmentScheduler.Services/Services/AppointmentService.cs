@@ -26,6 +26,7 @@ namespace DoctorAppointmentScheduler.Services.Services
             {
                 AppointmentId = a.AppointmentId,
                 DoctorId = a.DoctorId,
+                PatientId = a.PatientId,
                 PatientName = a.Patient.Name,
                 AppointmentDate = a.AppointmentDate,
                 AppointmentTime = a.AppointmentTime, //.ToString(@"hh\:mm\:ss"),
@@ -40,6 +41,7 @@ namespace DoctorAppointmentScheduler.Services.Services
             {
                 AppointmentId = a.AppointmentId,
                 DoctorId = a.DoctorId,
+                PatientId = a.PatientId,
                 DoctorName = a.Doctor.Name,
                 AppointmentDate = a.AppointmentDate,
                 AppointmentTime = a.AppointmentTime, //.ToString(@"hh\:mm\:ss"),
