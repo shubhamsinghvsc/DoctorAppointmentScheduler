@@ -41,7 +41,7 @@ namespace DoctorAppointmentScheduler.Controllers
             }
             if (alreadyTimeAvailability.Any(a => a.Day == timeAvailability.Day && (timeAvailability.StartTime >= a.StartTime && timeAvailability.StartTime <= a.EndTime)))
             {
-                return BadRequest("starting or ending time matches existing scheule");
+                return NotFound("starting or ending time matches existing scheule");
             }
 
             await _timeAvailabilityService.CreateTimeAvailability(timeAvailability);
