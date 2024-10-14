@@ -42,19 +42,19 @@ namespace DoctorAppointmentScheduler.Controllers
         }
 
         [HttpPost("login")]
-        public async Task<IActionResult> Login(String contactNumber, string password)
+        public async Task<IActionResult> Login([FromBody] LoginRequest request)
         {
-            if (contactNumber == null || password == null)
+            if (request.ContactNumber == null || request.Password == null)
             {
                 return BadRequest("Contact Number or Password is NUll");
             }
-            Users existingLoginDetail = await _usersRepository.GetByContactNumberAsync(contactNumber);
+            Users existingLoginDetail = await _usersRepository.GetByContactNumberAsync(request.ContactNumber);
             if (existingLoginDetail == null)
             {
                 return BadRequest("User Does not Exists");
             }
 
-            if (existingLoginDetail.password != password)
+            if (existingLoginDetail.password != request.Password)
             {
                 return Unauthorized("Password Does Not Mached (Incorrect Password)");
             }
@@ -64,5 +64,12 @@ namespace DoctorAppointmentScheduler.Controllers
 
 
         }
+
+        public class LoginRequest
+        {
+            public string ContactNumber { get; set; }
+            public string Password { get; set; }
+        }
+
     }
 }
