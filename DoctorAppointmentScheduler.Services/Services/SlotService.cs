@@ -22,8 +22,7 @@ namespace DoctorAppointmentScheduler.Services.Services
 
         public async Task<IEnumerable<Slot>> GetSlot(DateTime appointmentDate, int doctorId)
         {
-
-            if (DateTime.Now > appointmentDate)
+            if (DateTime.Today.Date > appointmentDate)
             {
                 return new List<Slot>{
                         new Slot { SlotId = "Past", StartTime = TimeSpan.Zero, EndTime = TimeSpan.Zero, Status = "InvalidDate" }

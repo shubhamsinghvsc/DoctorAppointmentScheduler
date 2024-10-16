@@ -12,11 +12,18 @@ namespace DoctorAppointmentScheduler.Controllers
         private readonly IUsersRepository _usersRepository;
         private readonly ITokenService _tokenService;
 
+
         public AuthenticationController(ITokenService tokenService, IUsersRepository usersRepository)
         {
             _usersRepository = usersRepository;
             _tokenService = tokenService;
 
+        }
+
+        public class LoginRequest
+        {
+            public string ContactNumber { get; set; }
+            public string Password { get; set; }
         }
 
         [HttpPost("register")]
@@ -65,11 +72,7 @@ namespace DoctorAppointmentScheduler.Controllers
 
         }
 
-        public class LoginRequest
-        {
-            public string ContactNumber { get; set; }
-            public string Password { get; set; }
-        }
+
 
     }
 }
